@@ -7,7 +7,7 @@ package GUI;
 /**
  *
  * @author roberacc
- */hello
+ */
 public class MainFrame extends javax.swing.JFrame {
     
     PanelPrograma panelP;
