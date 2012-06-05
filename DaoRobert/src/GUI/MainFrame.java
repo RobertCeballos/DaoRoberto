@@ -30,17 +30,13 @@ public class MainFrame extends JFrame {
      * Creates new form MainFrame
      */
     public MainFrame() {
-        //String datos[]={"Codigo","Nombre","Nivel","Creditos"};
-        //String datoss[][]={{"","","",""},{"","","",""},{"","","",""},{"","","",""}};
+        
         initComponents();
         
-        contenedor= getContentPane();
         panel= new JPanel();
         tabla= new JTable();
         scroll= new JScrollPane(tabla);
         panel.add(scroll);
-        //columna=tabla.getColumnModel();
-        //columna.setColumnMargin(30);
         
         modelo= new DefaultTableModel();
         modelo.addColumn("Codigo");
