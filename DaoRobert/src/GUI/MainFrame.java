@@ -4,25 +4,47 @@
  */
 package GUI;
 
+import javax.swing.*;
+import java.awt.*;
 /**
  *
  * @author roberacc
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends JFrame {
     
     PanelPrograma panelP;
     PanelEstudiante panelE;
+    JPanel panel;
+    Container contenedor;
+    JScrollPane scroll;
+    JTable tabla;
+    
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
+        String datos[]={"Programa","Codigo"};
+        String datoss[][]={{"Pro","grama","Codigo"},{"Prog","rama","Codigo"}};
         initComponents();
+        
+        contenedor= getContentPane();
+        panel= new JPanel();
+        tabla= new JTable(datoss,datos);
+        scroll= new JScrollPane(tabla);
+        panel.add(scroll);
+        contenedor.add(panel);
+        
+        setVisible(true);
+        setLocation(200, 200);
+        setSize(200,200);
+        
+        
         panelP= new PanelPrograma();
         panelE= new PanelEstudiante();
         
         getContentPane().add(panelP);
-        panelP.setBounds(150, 60, 350, 350);
+        panelP.setBounds(150, 60, 450, 450);
         panelP.setVisible(false);
         
         getContentPane().add(panelE);
@@ -96,7 +118,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jButtonPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(jButtonEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addContainerGap(239, Short.MAX_VALUE))
         );
 
         pack();
