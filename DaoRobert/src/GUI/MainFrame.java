@@ -6,6 +6,9 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 /**
  *
  * @author roberacc
@@ -18,28 +21,41 @@ public class MainFrame extends JFrame {
     Container contenedor;
     JScrollPane scroll;
     JTable tabla;
+    TableColumnModel columna;   
+    DefaultTableModel modelo;
+    
     
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
-        String datos[]={"Programa","Codigo"};
-        String datoss[][]={{"Pro","grama","Codigo"},{"Prog","rama","Codigo"}};
+        //String datos[]={"Codigo","Nombre","Nivel","Creditos"};
+        //String datoss[][]={{"","","",""},{"","","",""},{"","","",""},{"","","",""}};
         initComponents();
         
         contenedor= getContentPane();
         panel= new JPanel();
-        tabla= new JTable(datoss,datos);
+        tabla= new JTable();
         scroll= new JScrollPane(tabla);
         panel.add(scroll);
-        contenedor.add(panel);
+        //columna=tabla.getColumnModel();
+        //columna.setColumnMargin(30);
         
-        setVisible(true);
-        setLocation(200, 200);
-        setSize(200,200);
+        modelo= new DefaultTableModel();
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Nivel");
+        modelo.addColumn("Creditos");
         
+        Object[] fila= new Object[3];
+        modelo.addRow(fila);
+        tabla.setModel(modelo);
         
+        getContentPane().add(panel);
+        panel.setBounds(150, 350, 450, 100);
+        panel.setVisible(true);             
+                
         panelP= new PanelPrograma();
         panelE= new PanelEstudiante();
         
@@ -69,7 +85,7 @@ public class MainFrame extends JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(700, 600));
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
         jLabel1.setText("UNIVERSIDAD DEL VALLE");
