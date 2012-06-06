@@ -48,35 +48,35 @@ public class PanelPrograma extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel1.setText("GESTION DE PROGRAMAS");
         add(jLabel1);
-        jLabel1.setBounds(120, 20, 230, 21);
+        jLabel1.setBounds(120, 20, 230, 24);
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel2.setText("Codigo");
         add(jLabel2);
-        jLabel2.setBounds(40, 90, 70, 18);
+        jLabel2.setBounds(40, 90, 70, 20);
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel3.setText("Nombre");
         add(jLabel3);
-        jLabel3.setBounds(40, 130, 56, 18);
+        jLabel3.setBounds(40, 130, 56, 20);
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel4.setText("Nivel");
         add(jLabel4);
-        jLabel4.setBounds(40, 170, 50, 18);
+        jLabel4.setBounds(40, 170, 50, 20);
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel5.setText("Creditos");
         add(jLabel5);
-        jLabel5.setBounds(40, 210, 80, 18);
+        jLabel5.setBounds(40, 210, 80, 20);
         add(jTextCodigo);
-        jTextCodigo.setBounds(140, 80, 90, 28);
+        jTextCodigo.setBounds(140, 80, 90, 20);
         add(jTextNombre);
-        jTextNombre.setBounds(140, 120, 120, 28);
+        jTextNombre.setBounds(140, 120, 120, 20);
         add(jTextNivel);
-        jTextNivel.setBounds(140, 160, 90, 28);
+        jTextNivel.setBounds(140, 160, 90, 20);
         add(jTextCreditos);
-        jTextCreditos.setBounds(140, 200, 90, 28);
+        jTextCreditos.setBounds(140, 200, 90, 20);
 
         jButtonRegistrar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jButtonRegistrar.setText("GUARDAR");
@@ -86,7 +86,7 @@ public class PanelPrograma extends javax.swing.JPanel {
             }
         });
         add(jButtonRegistrar);
-        jButtonRegistrar.setBounds(30, 260, 90, 30);
+        jButtonRegistrar.setBounds(290, 80, 90, 29);
 
         jButtonLimpiar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jButtonLimpiar.setText("LIMPIAR");
@@ -99,7 +99,7 @@ public class PanelPrograma extends javax.swing.JPanel {
             }
         });
         add(jButtonLimpiar);
-        jButtonLimpiar.setBounds(290, 260, 90, 30);
+        jButtonLimpiar.setBounds(290, 160, 90, 30);
 
         jButtonEditar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jButtonEditar.setText("EDITAR");
@@ -109,7 +109,7 @@ public class PanelPrograma extends javax.swing.JPanel {
             }
         });
         add(jButtonEditar);
-        jButtonEditar.setBounds(160, 260, 90, 30);
+        jButtonEditar.setBounds(290, 120, 90, 29);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed

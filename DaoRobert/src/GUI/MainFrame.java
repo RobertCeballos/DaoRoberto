@@ -49,7 +49,7 @@ public class MainFrame extends JFrame {
         tabla.setModel(modelo);
         
         getContentPane().add(panel);
-        panel.setBounds(150, 350, 450, 100);
+        panel.setBounds(150, 350, 470, 100);
         panel.setVisible(true);             
                 
         panelP= new PanelPrograma();

@@ -5,17 +5,43 @@
 package DAO;
 
 import ENTIDADES.Programa;
+import java.sql.*;
 
 /**
  *
  * @author roberacc
- */hello
+ */
 public class daoPrograma {
     
-    public int registrarPrograma(Programa program){
+    Fachada fachada;
+    
+    public daoPrograma(){
+        fachada= new Fachada();
         
-        System.out.println("Daoooo");
-        return 0;
+    }
+    
+    public int registrarPrograma(Programa prog){
+        
+        String sql;
+        int filas=0;
+        
+        sql="INSERT INTO programa VALUES('"+ prog.getCodigo()+"','"+ prog.getNombre()+"','"+
+            prog.getNivel()+"',"+ prog.getCreditos()+")";
+        System.out.println("codigo"+prog.getCodigo());
+        
+        try{
+            System.out.println("sii");
+            Connection con= fachada.conectar();
+            Statement sentencia= con.createStatement();
+            
+            filas=sentencia.executeUpdate(sql);
+            con.close();
+            return filas;
+            
+            
+        }catch(SQLException e){ System.out.println(e); }
+        catch(Exception e){ System.out.println(e); }
+        return -1;
     }
     
 }
