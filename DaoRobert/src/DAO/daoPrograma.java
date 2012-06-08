@@ -44,5 +44,10 @@ public class daoPrograma {
         return -1;
     }
     
+    public int consultarPrograma(){
+        
+        return 0;
+    }
+    
 }
 

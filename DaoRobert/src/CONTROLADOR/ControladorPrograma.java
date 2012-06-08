@@ -37,4 +37,13 @@ public class ControladorPrograma {
         
     }
     
+    public void consultarPrograma(String codigo){
+        
+        
+        
+    }
+    
+    
+    
+    
 }

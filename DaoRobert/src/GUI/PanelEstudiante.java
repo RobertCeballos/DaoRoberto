@@ -50,30 +50,32 @@ public class PanelEstudiante extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel2.setText("Codigo");
         add(jLabel2);
-        jLabel2.setBounds(40, 90, 50, 18);
+        jLabel2.setBounds(40, 90, 60, 20);
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel3.setText("Nombre");
         add(jLabel3);
-        jLabel3.setBounds(40, 130, 56, 18);
+        jLabel3.setBounds(40, 130, 70, 20);
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel4.setText("Sexo");
         add(jLabel4);
-        jLabel4.setBounds(40, 170, 35, 18);
+        jLabel4.setBounds(40, 170, 50, 20);
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel5.setText("Cod. Program");
         add(jLabel5);
-        jLabel5.setBounds(40, 210, 97, 18);
+        jLabel5.setBounds(40, 210, 97, 20);
         add(jTextField1);
-        jTextField1.setBounds(140, 80, 90, 28);
+        jTextField1.setBounds(150, 85, 90, 25);
         add(jTextField2);
-        jTextField2.setBounds(140, 120, 120, 28);
+        jTextField2.setBounds(150, 125, 120, 25);
+
+        jTextField3.setFocusable(false);
         add(jTextField3);
-        jTextField3.setBounds(140, 160, 90, 28);
+        jTextField3.setBounds(150, 165, 90, 25);
         add(jTextField4);
-        jTextField4.setBounds(140, 200, 90, 28);
+        jTextField4.setBounds(150, 205, 90, 25);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

@@ -41,6 +41,7 @@ public class PanelPrograma extends javax.swing.JPanel {
         jButtonRegistrar = new javax.swing.JButton();
         jButtonLimpiar = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
+        jButtonConsultar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(400, 400));
         setLayout(null);
@@ -70,15 +71,15 @@ public class PanelPrograma extends javax.swing.JPanel {
         add(jLabel5);
         jLabel5.setBounds(40, 210, 80, 20);
         add(jTextCodigo);
-        jTextCodigo.setBounds(140, 80, 90, 20);
+        jTextCodigo.setBounds(150, 85, 90, 25);
         add(jTextNombre);
-        jTextNombre.setBounds(140, 120, 120, 20);
+        jTextNombre.setBounds(150, 125, 120, 25);
         add(jTextNivel);
-        jTextNivel.setBounds(140, 160, 90, 20);
+        jTextNivel.setBounds(150, 165, 90, 25);
         add(jTextCreditos);
-        jTextCreditos.setBounds(140, 200, 90, 20);
+        jTextCreditos.setBounds(150, 205, 90, 25);
 
-        jButtonRegistrar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jButtonRegistrar.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         jButtonRegistrar.setText("GUARDAR");
         jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,9 +87,9 @@ public class PanelPrograma extends javax.swing.JPanel {
             }
         });
         add(jButtonRegistrar);
-        jButtonRegistrar.setBounds(290, 80, 90, 29);
+        jButtonRegistrar.setBounds(320, 80, 110, 30);
 
-        jButtonLimpiar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jButtonLimpiar.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         jButtonLimpiar.setText("LIMPIAR");
         jButtonLimpiar.setMaximumSize(new java.awt.Dimension(87, 30));
         jButtonLimpiar.setMinimumSize(new java.awt.Dimension(87, 30));
@@ -99,9 +100,9 @@ public class PanelPrograma extends javax.swing.JPanel {
             }
         });
         add(jButtonLimpiar);
-        jButtonLimpiar.setBounds(290, 200, 90, 30);
+        jButtonLimpiar.setBounds(320, 200, 110, 30);
 
-        jButtonEditar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jButtonEditar.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         jButtonEditar.setText("EDITAR");
         jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,7 +110,17 @@ public class PanelPrograma extends javax.swing.JPanel {
             }
         });
         add(jButtonEditar);
-        jButtonEditar.setBounds(290, 160, 90, 29);
+        jButtonEditar.setBounds(320, 160, 110, 25);
+
+        jButtonConsultar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButtonConsultar.setText("CONSULTAR");
+        jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarActionPerformed(evt);
+            }
+        });
+        add(jButtonConsultar);
+        jButtonConsultar.setBounds(320, 120, 110, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
@@ -132,6 +143,12 @@ public class PanelPrograma extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
+    private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
+
+        String codigo=jTextCodigo.getText();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonConsultarActionPerformed
+
     
     public void limpiarCampos(){
         
@@ -143,6 +160,7 @@ public class PanelPrograma extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonConsultar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonRegistrar;
