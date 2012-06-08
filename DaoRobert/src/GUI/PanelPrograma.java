@@ -99,7 +99,7 @@ public class PanelPrograma extends javax.swing.JPanel {
             }
         });
         add(jButtonLimpiar);
-        jButtonLimpiar.setBounds(290, 160, 90, 30);
+        jButtonLimpiar.setBounds(290, 200, 90, 30);
 
         jButtonEditar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jButtonEditar.setText("EDITAR");
@@ -109,7 +109,7 @@ public class PanelPrograma extends javax.swing.JPanel {
             }
         });
         add(jButtonEditar);
-        jButtonEditar.setBounds(290, 120, 90, 29);
+        jButtonEditar.setBounds(290, 160, 90, 29);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
