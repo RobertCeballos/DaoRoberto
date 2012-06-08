@@ -22,15 +22,18 @@ public class Fachada {
     
     Fachada(){
         
-        url="jdbc:postgresql://localhost:5432/robert";
-        user="postgres";
-        pass="robert";
-        System.out.println("fachadaaaa");
-         //conectar();
+        url="jdbc:postgresql://pgsql:5432/roberacc";
+        user="roberacc";
+        pass="roberacc";
+        
+        //url="jdbc:postgresql://localhost:5432/robert";       
+        //user="postgres";       
+        //pass="robert";
+       
     }
     
     public Connection conectar(){
-        System.out.println("fachada");
+
         try{
             Class.forName("org.postgresql.Driver");
             
@@ -39,6 +42,7 @@ public class Fachada {
         }
             System.out.println("Driver cargado correctamente");
         try{
+            
             con=DriverManager.getConnection(url, user, pass);
                 System.out.println("Conexion realizada");
             return con;
