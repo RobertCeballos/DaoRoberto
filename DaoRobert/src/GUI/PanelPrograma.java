@@ -5,6 +5,13 @@
 package GUI;
 
 import CONTROLADOR.ControladorPrograma;
+import ENTIDADES.Programa;
+import java.util.LinkedList;
+import java.util.Vector;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,12 +19,37 @@ import CONTROLADOR.ControladorPrograma;
  */
 public class PanelPrograma extends javax.swing.JPanel {
 
-    ControladorPrograma program= new ControladorPrograma();
+    JPanel panel;
+    JScrollPane scroll;
+    JTable tabla;   
+    DefaultTableModel modelo;
+    ControladorPrograma program;
+   // MainFrame ventana= new MainFrame();
     /**
      * Creates new form PanelPrograma
      */
     public PanelPrograma() {
         initComponents();
+        program= new ControladorPrograma();
+        
+        panel= new JPanel();
+        tabla= new JTable();
+        scroll= new JScrollPane(tabla);
+        panel.add(scroll);
+        
+        modelo= new DefaultTableModel();
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Nivel");
+        modelo.addColumn("Creditos");
+        
+        Object[] fila= new Object[3];
+        modelo.addRow(fila);
+        tabla.setModel(modelo);
+        
+        add(panel);
+        panel.setBounds(100, 250, 400, 200);
+        panel.setVisible(true);             
     }   
 
     /**
@@ -49,27 +81,27 @@ public class PanelPrograma extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel1.setText("GESTION DE PROGRAMAS");
         add(jLabel1);
-        jLabel1.setBounds(120, 20, 230, 24);
+        jLabel1.setBounds(120, 20, 230, 21);
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel2.setText("Codigo");
         add(jLabel2);
-        jLabel2.setBounds(40, 90, 70, 20);
+        jLabel2.setBounds(40, 90, 70, 18);
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel3.setText("Nombre");
         add(jLabel3);
-        jLabel3.setBounds(40, 130, 56, 20);
+        jLabel3.setBounds(40, 130, 56, 18);
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel4.setText("Nivel");
         add(jLabel4);
-        jLabel4.setBounds(40, 170, 50, 20);
+        jLabel4.setBounds(40, 170, 50, 18);
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel5.setText("Creditos");
         add(jLabel5);
-        jLabel5.setBounds(40, 210, 80, 20);
+        jLabel5.setBounds(40, 210, 80, 18);
         add(jTextCodigo);
         jTextCodigo.setBounds(150, 85, 90, 25);
         add(jTextNombre);
@@ -94,25 +126,15 @@ public class PanelPrograma extends javax.swing.JPanel {
         jButtonLimpiar.setMaximumSize(new java.awt.Dimension(87, 30));
         jButtonLimpiar.setMinimumSize(new java.awt.Dimension(87, 30));
         jButtonLimpiar.setPreferredSize(new java.awt.Dimension(87, 30));
-        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLimpiarActionPerformed(evt);
-            }
-        });
         add(jButtonLimpiar);
         jButtonLimpiar.setBounds(320, 200, 110, 30);
 
         jButtonEditar.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         jButtonEditar.setText("EDITAR");
-        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditarActionPerformed(evt);
-            }
-        });
         add(jButtonEditar);
-        jButtonEditar.setBounds(320, 160, 110, 25);
+        jButtonEditar.setBounds(320, 160, 110, 27);
 
-        jButtonConsultar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButtonConsultar.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         jButtonConsultar.setText("CONSULTAR");
         jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,20 +154,25 @@ public class PanelPrograma extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
-    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
-
-        limpiarCampos();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonLimpiarActionPerformed
-
-    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEditarActionPerformed
-
     private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
 
+        LinkedList list= new LinkedList();
         String codigo=jTextCodigo.getText();
+        System.out.println("sizee"+list.size());
+        Object[][] o= new Object[list.size()+1][4];
+        System.out.println("iiiii"+list.size());
+        list=program.consultarPrograma(codigo);
+        System.out.println("eeeee"+list.getFirst());
+            for(int i=0; i<list.size(); i++){
+            Programa get =(Programa) list.get(i);
+            System.out.println("hhhh"+get.getNombre());
+                o[i][0]=get.getCodigo();
+                o[i][1]=get.getNombre();
+                o[i][2]=get.getNivel();
+                o[i][3]=get.getCreditos();            
+            }
+//            ventana.modelo= new DefaultTableModel(o, new Object[]{"Codigo","Nombre","Nivel","Creditos"});     
+//            ventana.tabla.setModel(ventana.modelo);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
