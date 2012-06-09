@@ -24,6 +24,7 @@ public class PanelPrograma extends javax.swing.JPanel {
     JTable tabla;   
     DefaultTableModel modelo;
     ControladorPrograma program;
+    Object[] colum= {"Codigo","Nombre","Nivel","Creditos"};
    // MainFrame ventana= new MainFrame();
     /**
      * Creates new form PanelPrograma
@@ -48,7 +49,7 @@ public class PanelPrograma extends javax.swing.JPanel {
         tabla.setModel(modelo);
         
         add(panel);
-        panel.setBounds(100, 250, 400, 200);
+        panel.setBounds(40, 250, 460, 300);
         panel.setVisible(true);             
     }   
 
@@ -126,11 +127,21 @@ public class PanelPrograma extends javax.swing.JPanel {
         jButtonLimpiar.setMaximumSize(new java.awt.Dimension(87, 30));
         jButtonLimpiar.setMinimumSize(new java.awt.Dimension(87, 30));
         jButtonLimpiar.setPreferredSize(new java.awt.Dimension(87, 30));
+        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarActionPerformed(evt);
+            }
+        });
         add(jButtonLimpiar);
         jButtonLimpiar.setBounds(320, 200, 110, 30);
 
         jButtonEditar.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         jButtonEditar.setText("EDITAR");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
         add(jButtonEditar);
         jButtonEditar.setBounds(320, 160, 110, 27);
 
@@ -158,24 +169,33 @@ public class PanelPrograma extends javax.swing.JPanel {
 
         LinkedList list= new LinkedList();
         String codigo=jTextCodigo.getText();
-        System.out.println("sizee"+list.size());
-        Object[][] o= new Object[list.size()+1][4];
-        System.out.println("iiiii"+list.size());
+        
         list=program.consultarPrograma(codigo);
-        System.out.println("eeeee"+list.getFirst());
+        Object[][] o= new Object[list.size()][4];
+        
             for(int i=0; i<list.size(); i++){
             Programa get =(Programa) list.get(i);
-            System.out.println("hhhh"+get.getNombre());
                 o[i][0]=get.getCodigo();
                 o[i][1]=get.getNombre();
                 o[i][2]=get.getNivel();
-                o[i][3]=get.getCreditos();            
+                o[i][3]=get.getCreditos();
             }
-//            ventana.modelo= new DefaultTableModel(o, new Object[]{"Codigo","Nombre","Nivel","Creditos"});     
-//            ventana.tabla.setModel(ventana.modelo);
+            modelo= new DefaultTableModel(o, colum);     
+            tabla.setModel(modelo);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
+
+        limpiarCampos();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonLimpiarActionPerformed
+
+    
     
     public void limpiarCampos(){
         
