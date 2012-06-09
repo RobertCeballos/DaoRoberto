@@ -24,6 +24,8 @@ public class PanelPrograma extends javax.swing.JPanel {
     JTable tabla;   
     DefaultTableModel modelo;
     ControladorPrograma program;
+    Programa get;
+    Object[][] o;
     Object[] colum= {"Codigo","Nombre","Nivel","Creditos"};
    // MainFrame ventana= new MainFrame();
     /**
@@ -31,6 +33,7 @@ public class PanelPrograma extends javax.swing.JPanel {
      */
     public PanelPrograma() {
         initComponents();
+        get = new Programa();
         program= new ControladorPrograma();
         
         panel= new JPanel();
@@ -157,11 +160,19 @@ public class PanelPrograma extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        
+        jTextCodigo.setEnabled(true);
         program.registrarPrograma(jTextCodigo.getText(),
                 jTextNombre.getText(),
                 jTextNivel.getText(),
                 jTextCreditos.getText());
+        
+                o= new Object[1][4];
+                o[0][0]=jTextCodigo.getText();
+                o[0][1]=jTextNombre.getText();
+                o[0][2]=jTextNivel.getText();
+                o[0][3]=jTextCreditos.getText();
+        modelo=new DefaultTableModel(o,colum);      
+        tabla.setModel(modelo);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
@@ -171,10 +182,10 @@ public class PanelPrograma extends javax.swing.JPanel {
         String codigo=jTextCodigo.getText();
         
         list=program.consultarPrograma(codigo);
-        Object[][] o= new Object[list.size()][4];
+        o= new Object[list.size()][4];
         
             for(int i=0; i<list.size(); i++){
-            Programa get =(Programa) list.get(i);
+            get =(Programa) list.get(i);
                 o[i][0]=get.getCodigo();
                 o[i][1]=get.getNombre();
                 o[i][2]=get.getNivel();
@@ -187,6 +198,11 @@ public class PanelPrograma extends javax.swing.JPanel {
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         // TODO add your handling code here:
+        jTextCodigo.setEnabled(false);
+        jTextNombre.setText(get.getNombre());
+        jTextNivel.setText(get.getNivel());
+        jTextCreditos.setText(get.getCreditos());
+        
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
