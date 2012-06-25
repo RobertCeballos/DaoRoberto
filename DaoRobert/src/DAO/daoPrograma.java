@@ -6,6 +6,8 @@ package DAO;
 
 import ENTIDADES.Programa;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
@@ -20,7 +22,7 @@ public class daoPrograma {
         
     }
     
-    public int registrarPrograma(Programa prog){
+    public int registrarProgramaDao(Programa prog){
         
         String sql;
         int filas=0;
@@ -30,7 +32,6 @@ public class daoPrograma {
         System.out.println("codigo"+prog.getCodigo());
         
         try{
-            System.out.println("sii");
             Connection con= fachada.conectar();
             Statement sentencia= con.createStatement();
             
@@ -41,37 +42,80 @@ public class daoPrograma {
             
         }catch(SQLException e){ System.out.println(e); }
         catch(Exception e){ System.out.println(e); }
-        return -1;
+        return filas;
     }
     
-    public Programa consultarPrograma(String codigo){
-        Programa p= new Programa();
-        ResultSet result;
-        System.out.println("aaaaa"+codigo);
-        String sql="SELECT codigo, nombre,nivel,creditos FROM programa WHERE codigo ='"+codigo+"'";
-        System.out.println("bbbbb"+codigo);
-        
-        try{
-            Connection con= fachada.conectar();
-            Statement sentencia= con.createStatement();
-            result= sentencia.executeQuery(sql);
+    
+//    public Programa consultarPrograma(String codigo){
+//        System.out.println("Consul");
+//        Programa p= new Programa();
+//        ResultSet result;
+//        String sql="SELECT codigo, nombre,nivel,creditos FROM programa WHERE codigo ='"+codigo+"'";
+//        
+//        try{
+//            Connection con= fachada.conectar();
+//            Statement sentencia= con.createStatement();
+//            result= sentencia.executeQuery(sql);
+//            
+//            while(result.next()){
+//                p.setCodigo(result.getString(1));
+//                p.setNombre(result.getString(2));
+//                p.setNivel(result.getString(3));
+//                p.setCreditos(result.getString(4));
+//                
+//            }
+//            
+//        }catch(Exception ex){
+//            System.out.println("SQLException: " + ex);        
+//        }       
+//        
+//        return p;
+//    }
+    
+    public ArrayList<Programa> consultarPrograma(String codigo, String nombre, String nivel, String creditos){
+        System.out.println("ListConsul");
+            ArrayList<Programa> lista = new ArrayList<Programa>();
+            Programa p = new Programa();
             
-            while(result.next()){
-                System.out.println("cccc"+codigo);
-                p.setCodigo(result.getString(1));
-                p.setNombre(result.getString(2));
-                p.setNivel(result.getString(3));
-                p.setCreditos(result.getString(4));
-                System.out.println("ddddd"+codigo);
-                System.out.println("ggggg"+result.getString(2));
-                
+            String sql = "SELECT * FROM programa     ";
+            
+            if(!codigo.isEmpty() || !nombre.isEmpty() || !nivel.isEmpty() || !creditos.isEmpty())
+                sql += "WHERE "; 
+            
+            if(!codigo.isEmpty()){
+                sql += "codigo = '"+codigo+"' AND ";
             }
+            if (!nombre.isEmpty()) {
+            sql += "nombre LIKE '%" + nombre + "%' AND ";
+            }
+            if (!nivel.isEmpty()) {
+            sql += "nivel LIKE '%" + nivel + "%' AND ";
+            }
+            if (!creditos.isEmpty()) {
+            sql += "creditos = " + creditos + " AND ";
+            }
+            sql = sql.substring(0, sql.length() - 5);
             
-        }catch(Exception ex){
-            System.out.println("SQLException: " + ex);        
-        }       
-        
-        return p;
+            try{
+                Connection con = fachada.conectar();
+                Statement sentencia = con.createStatement();
+                ResultSet result = sentencia.executeQuery(sql);
+                
+                while(result.next()){
+                    p.setCodigo(result.getString(1));
+                    p.setNombre(result.getString(2));
+                    p.setNivel(result.getString(3));
+                    p.setCreditos(result.getString(4));
+                    
+                    lista.add(p);
+                    
+                }
+                
+            }catch(Exception e){
+                System.out.println("SQLException: " + e);
+            }                      
+    
+    return lista;
     }
     
 }

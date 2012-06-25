@@ -4,11 +4,7 @@
  */
 package GUI;
 
-import javax.swing.*;
-import java.awt.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
+import javax.swing.JFrame;
 /**
  *
  * @author roberacc
@@ -17,12 +13,8 @@ public class MainFrame extends JFrame {
     
     PanelPrograma panelP;
     PanelEstudiante panelE;
-    JPanel panel;
-    Container contenedor;
-    JScrollPane scroll;
-    JTable tabla;
-    TableColumnModel columna;   
-    DefaultTableModel modelo;
+    
+    
     
     
 
@@ -33,30 +25,13 @@ public class MainFrame extends JFrame {
         
         initComponents();
         
-        panel= new JPanel();
-        tabla= new JTable();
-        scroll= new JScrollPane(tabla);
-        panel.add(scroll);
         
-        modelo= new DefaultTableModel();
-        modelo.addColumn("Codigo");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Nivel");
-        modelo.addColumn("Creditos");
-        
-        Object[] fila= new Object[3];
-        modelo.addRow(fila);
-        tabla.setModel(modelo);
-        
-        getContentPane().add(panel);
-        panel.setBounds(150, 350, 470, 100);
-        panel.setVisible(true);             
                 
         panelP= new PanelPrograma();
         panelE= new PanelEstudiante();
         
         getContentPane().add(panelP);
-        panelP.setBounds(150, 60, 450, 450);
+        panelP.setBounds(150, 60, 550, 550);
         panelP.setVisible(false);
         
         getContentPane().add(panelE);
@@ -81,7 +56,6 @@ public class MainFrame extends JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 600));
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
         jLabel1.setText("UNIVERSIDAD DEL VALLE");
@@ -117,7 +91,7 @@ public class MainFrame extends JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(20, 20, 20)
                             .addComponent(jButtonPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

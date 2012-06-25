@@ -8,6 +8,7 @@ import CONTROLADOR.ControladorPrograma;
 import ENTIDADES.Programa;
 import java.util.LinkedList;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,40 +22,42 @@ public class PanelPrograma extends javax.swing.JPanel {
 
     JPanel panel;
     JScrollPane scroll;
-    JTable tabla;   
+    JTable tabla;
     DefaultTableModel modelo;
     ControladorPrograma program;
     Programa get;
-    Object[][] o;
-    Object[] colum= {"Codigo","Nombre","Nivel","Creditos"};
-   // MainFrame ventana= new MainFrame();
+    
+    
+    Object[] colum = {"Codigo", "Nombre", "Nivel", "Creditos"};
+    // MainFrame ventana= new MainFrame();
+
     /**
      * Creates new form PanelPrograma
      */
     public PanelPrograma() {
         initComponents();
+        jButtonEditar.setEnabled(false);
+
         get = new Programa();
-        program= new ControladorPrograma();
-        
-        panel= new JPanel();
-        tabla= new JTable();
-        scroll= new JScrollPane(tabla);
+        program = new ControladorPrograma();
+
+        panel = new JPanel();
+        tabla = new JTable();
+        scroll = new JScrollPane(tabla);
         panel.add(scroll);
-        
-        modelo= new DefaultTableModel();
-        modelo.addColumn("Codigo");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Nivel");
-        modelo.addColumn("Creditos");
-        
-        Object[] fila= new Object[3];
+        //scroll.setBounds(20, 250, 540, 140);
+
+        modelo = new DefaultTableModel(colum, 0);
+
+
+        Object[] fila = new Object[3];
         modelo.addRow(fila);
         tabla.setModel(modelo);
-        
+
         add(panel);
-        panel.setBounds(40, 250, 460, 300);
-        panel.setVisible(true);             
-    }   
+        panel.setBounds(40, 250, 455, 150);
+        panel.setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,7 +82,7 @@ public class PanelPrograma extends javax.swing.JPanel {
         jButtonEditar = new javax.swing.JButton();
         jButtonConsultar = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(400, 400));
+        setPreferredSize(new java.awt.Dimension(800, 500));
         setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
@@ -160,68 +163,84 @@ public class PanelPrograma extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
+
+        int salida;
         jTextCodigo.setEnabled(true);
-        program.registrarPrograma(jTextCodigo.getText(),
+        salida = program.registrarProgramaControl(jTextCodigo.getText(),
                 jTextNombre.getText(),
                 jTextNivel.getText(),
                 jTextCreditos.getText());
-        
-                o= new Object[1][4];
-                o[0][0]=jTextCodigo.getText();
-                o[0][1]=jTextNombre.getText();
-                o[0][2]=jTextNivel.getText();
-                o[0][3]=jTextCreditos.getText();
-        modelo=new DefaultTableModel(o,colum);      
-        tabla.setModel(modelo);
+        if (salida == 1) {
+            Object[][] o = new Object[1][4];
+            o[0][0] = jTextCodigo.getText();
+            o[0][1] = jTextNombre.getText();
+            o[0][2] = jTextNivel.getText();
+            o[0][3] = jTextCreditos.getText();
+            modelo = new DefaultTableModel(o, colum);
+            tabla.setModel(modelo);
+            JOptionPane.showMessageDialog(null, "El Programa se Registro Correctamente!!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Datos incorrectos");
+        }
+        jButtonEditar.setEnabled(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
     private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
 
-        LinkedList list= new LinkedList();
-        String codigo=jTextCodigo.getText();
+        LinkedList list = new LinkedList();
+        Object[][] o;
+        String codigo = jTextCodigo.getText();
+        String nombre = jTextNombre.getText();
+        String nivel = jTextNivel.getText();
+        String creditos = jTextCreditos.getText();
+
+        o = program.consultarPrograma(codigo, nombre, nivel, creditos);       
+            
         
-        list=program.consultarPrograma(codigo);
-        o= new Object[list.size()][4];
-        
-            for(int i=0; i<list.size(); i++){
-            get =(Programa) list.get(i);
-                o[i][0]=get.getCodigo();
-                o[i][1]=get.getNombre();
-                o[i][2]=get.getNivel();
-                o[i][3]=get.getCreditos();
-            }
-            modelo= new DefaultTableModel(o, colum);     
-            tabla.setModel(modelo);
+        modelo = new DefaultTableModel(o, colum);
+        tabla.setModel(modelo);
+
+        //jTextCodigo.setEditable(false);
+        jTextNombre.setEditable(false);
+        jTextNivel.setEditable(false);
+        jTextCreditos.setEditable(false);
+        jButtonEditar.setEnabled(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         // TODO add your handling code here:
+
         jTextCodigo.setEnabled(false);
+        jTextNombre.setEditable(true);
+        jTextNivel.setEditable(true);
+        jTextCreditos.setEditable(true);
+        jTextCodigo.setText(get.getCodigo());
         jTextNombre.setText(get.getNombre());
         jTextNivel.setText(get.getNivel());
         jTextCreditos.setText(get.getCreditos());
-        
+
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
 
+        jTextCodigo.setEditable(true);
+        jTextNombre.setEditable(true);
+        jTextNivel.setEditable(true);
+        jTextCreditos.setEditable(true);
         limpiarCampos();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
-    
-    
-    public void limpiarCampos(){
-        
+    public void limpiarCampos() {
+
         jTextCodigo.setText("");
         jTextNombre.setText("");
         jTextNivel.setText("");
         jTextCreditos.setText("");
-        
+
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultar;
     private javax.swing.JButton jButtonEditar;
