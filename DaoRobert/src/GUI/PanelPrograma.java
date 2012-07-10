@@ -6,19 +6,22 @@ package GUI;
 
 import CONTROLADOR.ControladorPrograma;
 import ENTIDADES.Programa;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.LinkedList;
-import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import javax.swing.*;
 
 /**
  *
  * @author roberacc
  */
-public class PanelPrograma extends javax.swing.JPanel {
+public class PanelPrograma extends JPanel {
 
     JPanel panel;
     JScrollPane scroll;
@@ -55,7 +58,7 @@ public class PanelPrograma extends javax.swing.JPanel {
         tabla.setModel(modelo);
 
         add(panel);
-        panel.setBounds(40, 250, 455, 150);
+        panel.setBounds(20, 250, 455, 150);
         panel.setVisible(true);
     }
 
@@ -170,14 +173,18 @@ public class PanelPrograma extends javax.swing.JPanel {
                 jTextNombre.getText(),
                 jTextNivel.getText(),
                 jTextCreditos.getText());
+        
         if (salida == 1) {
             Object[][] o = new Object[1][4];
             o[0][0] = jTextCodigo.getText();
             o[0][1] = jTextNombre.getText();
             o[0][2] = jTextNivel.getText();
             o[0][3] = jTextCreditos.getText();
+            
             modelo = new DefaultTableModel(o, colum);
             tabla.setModel(modelo);
+            
+            
             JOptionPane.showMessageDialog(null, "El Programa se Registro Correctamente!!");
         } else {
             JOptionPane.showMessageDialog(null, "Datos incorrectos");
@@ -197,9 +204,12 @@ public class PanelPrograma extends javax.swing.JPanel {
 
         o = program.consultarPrograma(codigo, nombre, nivel, creditos);       
             
-        
         modelo = new DefaultTableModel(o, colum);
         tabla.setModel(modelo);
+        tabla.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        //JScrollPane scroller= new JScrollPane(tabla);
+        //getContentPane().add(scroller, BorderLayout.CENTER);
+        tabla.setRowSorter(new TableRowSorter(modelo));
 
         //jTextCodigo.setEditable(false);
         jTextNombre.setEditable(false);
@@ -234,11 +244,16 @@ public class PanelPrograma extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
     public void limpiarCampos() {
+        
+        Object[][] empty= new Object[1][1];
 
         jTextCodigo.setText("");
         jTextNombre.setText("");
         jTextNivel.setText("");
         jTextCreditos.setText("");
+        
+        modelo = new DefaultTableModel(empty, colum);
+            tabla.setModel(modelo);
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
