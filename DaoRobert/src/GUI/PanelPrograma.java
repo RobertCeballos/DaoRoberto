@@ -29,7 +29,7 @@ public class PanelPrograma extends JPanel {
     DefaultTableModel modelo;
     ControladorPrograma program;
     Programa get;
-    
+    int filas=0;
     
     Object[] colum = {"Codigo", "Nombre", "Nivel", "Creditos"};
     // MainFrame ventana= new MainFrame();
@@ -39,7 +39,7 @@ public class PanelPrograma extends JPanel {
      */
     public PanelPrograma() {
         initComponents();
-        jButtonEditar.setEnabled(false);
+        //jButtonEditar.setEnabled(false);
 
         get = new Programa();
         program = new ControladorPrograma();
@@ -84,6 +84,7 @@ public class PanelPrograma extends JPanel {
         jButtonLimpiar = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jButtonConsultar = new javax.swing.JButton();
+        jButtonEliminar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 500));
         setLayout(null);
@@ -129,7 +130,7 @@ public class PanelPrograma extends JPanel {
             }
         });
         add(jButtonRegistrar);
-        jButtonRegistrar.setBounds(320, 80, 110, 30);
+        jButtonRegistrar.setBounds(290, 80, 110, 30);
 
         jButtonLimpiar.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         jButtonLimpiar.setText("LIMPIAR");
@@ -142,7 +143,7 @@ public class PanelPrograma extends JPanel {
             }
         });
         add(jButtonLimpiar);
-        jButtonLimpiar.setBounds(320, 200, 110, 30);
+        jButtonLimpiar.setBounds(290, 200, 110, 30);
 
         jButtonEditar.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         jButtonEditar.setText("EDITAR");
@@ -152,7 +153,7 @@ public class PanelPrograma extends JPanel {
             }
         });
         add(jButtonEditar);
-        jButtonEditar.setBounds(320, 160, 110, 27);
+        jButtonEditar.setBounds(410, 120, 110, 30);
 
         jButtonConsultar.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         jButtonConsultar.setText("CONSULTAR");
@@ -162,7 +163,17 @@ public class PanelPrograma extends JPanel {
             }
         });
         add(jButtonConsultar);
-        jButtonConsultar.setBounds(320, 120, 110, 30);
+        jButtonConsultar.setBounds(290, 120, 110, 30);
+
+        jButtonEliminar.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        jButtonEliminar.setText("ELIMINAR");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
+        add(jButtonEliminar);
+        jButtonEliminar.setBounds(410, 80, 110, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
@@ -203,7 +214,7 @@ public class PanelPrograma extends JPanel {
         String creditos = jTextCreditos.getText();
 
         o = program.consultarPrograma(codigo, nombre, nivel, creditos);       
-            
+        filas=o.length;    
         modelo = new DefaultTableModel(o, colum);
         tabla.setModel(modelo);
         tabla.setPreferredScrollableViewportSize(new Dimension(500, 70));
@@ -215,7 +226,7 @@ public class PanelPrograma extends JPanel {
         jTextNombre.setEditable(false);
         jTextNivel.setEditable(false);
         jTextCreditos.setEditable(false);
-        jButtonEditar.setEnabled(false);
+        //jButtonEditar.setEnabled(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
@@ -226,6 +237,7 @@ public class PanelPrograma extends JPanel {
         jTextNombre.setEditable(true);
         jTextNivel.setEditable(true);
         jTextCreditos.setEditable(true);
+        
         jTextCodigo.setText(get.getCodigo());
         jTextNombre.setText(get.getNombre());
         jTextNivel.setText(get.getNivel());
@@ -243,10 +255,25 @@ public class PanelPrograma extends JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        
+        // TODO add your handling code here:
+        int salida=0;
+        
+        salida=program.eliminarPrograma(jTextCodigo.getText());
+        System.out.println("salida="+salida);
+        if (salida == 1){
+            JOptionPane.showMessageDialog(null,"El Programa se Elimino Correctamente!!");
+        }
+        limpiarCampos();
+        
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
+
     public void limpiarCampos() {
         
-        Object[][] empty= new Object[1][1];
-
+        Object[][] empty= new Object[filas][0];
+        System.out.println("empty="+empty.length);
+        
         jTextCodigo.setText("");
         jTextNombre.setText("");
         jTextNivel.setText("");
@@ -259,6 +286,7 @@ public class PanelPrograma extends JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultar;
     private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonRegistrar;
     private javax.swing.JLabel jLabel1;
