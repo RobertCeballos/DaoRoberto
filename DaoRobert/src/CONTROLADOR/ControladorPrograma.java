@@ -66,8 +66,16 @@ public class ControladorPrograma {
             o[i][2] = get.getNivel();
             o[i][3] = get.getCreditos();
         }
-        
+        System.out.println("salida="+o.length);
         return o;
+    }
+    
+    public int eliminarPrograma(String codigo){
+        int out=0;
+        
+        out=daoPro.eliminarPrograma(codigo);
+        System.out.println("salida1="+out);
+        return out;
     }
     
     public int EditarPrograma(String codigo){
