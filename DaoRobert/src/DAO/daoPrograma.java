@@ -101,21 +101,41 @@ public class daoPrograma {
                 Statement sentencia = con.createStatement();
                 ResultSet result = sentencia.executeQuery(sql);
                 
+                int counter=0;
                 while(result.next()){
-                    p.setCodigo(result.getString(1));
-                    p.setNombre(result.getString(2));
-                    p.setNivel(result.getString(3));
-                    p.setCreditos(result.getString(4));
-                    
-                    lista.add(p);
+                    lista.add(new Programa());
+                    lista.get(counter).setCodigo(result.getString(1));
+                    lista.get(counter).setNombre(result.getString(2));
+                    lista.get(counter).setNivel(result.getString(3));
+                    lista.get(counter).setCreditos(result.getString(4));
+                    counter++;                                   
                     
                 }
                 
             }catch(Exception e){
                 System.out.println("SQLException: " + e);
-            }                      
-    
+            }  
+            
+    System.out.println("dao="+lista.size());
     return lista;
+    
+    }
+    
+    public int eliminarPrograma(String codigo){
+        
+        int out=0;
+        String sql="DELETE FROM programa WHERE codigo='"+codigo+"'";
+        
+        try{
+            Connection con= fachada.conectar();
+            Statement sentencia= con.createStatement();
+            out= sentencia.executeUpdate(sql);
+            
+        }catch(Exception e){
+            
+        }
+        
+        return out;
     }
     
 }
